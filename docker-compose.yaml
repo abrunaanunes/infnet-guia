@@ -5,16 +5,15 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      target: ${NODE_ENV}
     stdin_open: true
     ports:
       - "3000:3000"
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=${NODE_ENV}
+      - APP_URL=${APP_URL}
     networks:
       - app-network
-    volumes:
-      - ./:/app
-      - /app/node_modules
     depends_on:
       - db
     restart: unless-stopped
