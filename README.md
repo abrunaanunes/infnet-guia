@@ -45,3 +45,17 @@ Após iniciar a aplicação, você poderá acessá-la pelo endereço configurado
 ### Outras Configurações
 
 Se você precisar ajustar mais configurações, como a base de dados ou outras dependências, essas variáveis devem ser definidas no arquivo `.env` conforme a documentação dos serviços utilizados.
+
+# Publicar imagem no DockerHub
+
+1. Fazer login no Docker Hub
+   ```bash
+       docker login
+   
+2. Pelo terminal, na pasta do seu projeto, execute
+   ```bash
+       docker build -t {nome-imagem} .
+
+3. Enviar a imagem para o Docker Hub
+   ```bash
+   docker push {nome-usuario}/{nome-imagem}:latest
