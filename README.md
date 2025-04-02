@@ -52,7 +52,7 @@ Se você precisar ajustar mais configurações, como a base de dados ou outras d
    ```bash
    docker login
    
-2. Pelo terminal, na pasta do seu projeto, execute
+2. Pelo terminal, na pasta do seu projeto, execute (lembre do . ou caminho do Dockerfile)
    ```bash
    docker build -t {nome-imagem} .
 
