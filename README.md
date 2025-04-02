@@ -46,7 +46,7 @@ Após iniciar a aplicação, você poderá acessá-la pelo endereço configurado
 
 Se você precisar ajustar mais configurações, como a base de dados ou outras dependências, essas variáveis devem ser definidas no arquivo `.env` conforme a documentação dos serviços utilizados.
 
-# Publicar imagem no DockerHub
+## Publicar imagem no DockerHub
 
 1. Fazer login no Docker Hub
    ```bash
