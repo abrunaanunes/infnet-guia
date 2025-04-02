@@ -29,7 +29,7 @@ Edite o arquivo .env para ajustar as variáveis de ambiente de acordo com suas c
 - Para desenvolvimento, configure o NODE_ENV como development.
 - Para produção, configure o NODE_ENV como production.
 
-3. Construa o ambiente Docker
+3. Construa o ambiente Docker (Observação: remova o `--frozen-lockfile` na linha 10 do Dockerfile caso não tenha executado o `pnpm install` fora do container)
     ```bash
     docker-compose up --build
 
