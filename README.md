@@ -50,11 +50,11 @@ Se você precisar ajustar mais configurações, como a base de dados ou outras d
 
 1. Fazer login no Docker Hub
    ```bash
-       docker login
+   docker login
    
 2. Pelo terminal, na pasta do seu projeto, execute
    ```bash
-       docker build -t {nome-imagem} .
+   docker build -t {nome-imagem} .
 
 3. Enviar a imagem para o Docker Hub
    ```bash
