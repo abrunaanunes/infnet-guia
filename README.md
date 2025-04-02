@@ -56,6 +56,10 @@ Se você precisar ajustar mais configurações, como a base de dados ou outras d
    ```bash
    docker build -t {nome-imagem} .
 
-3. Enviar a imagem para o Docker Hub
+3. Coloque a tag da imagem
+   ```bash
+   docker tag {nome-imagem} {usuario-dockerhub}/{nome-imagem}p:latest
+
+4. Enviar a imagem para o Docker Hub
    ```bash
    docker push {nome-usuario}/{nome-imagem}:latest
