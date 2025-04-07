@@ -214,7 +214,7 @@ spec:
             - containerPort: 6379
 ```
 
-### `redis-service.yaml`
+#### `redis-service.yaml`
 ```yaml
 apiVersion: v1
 kind: Service
