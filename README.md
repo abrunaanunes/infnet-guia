@@ -17,6 +17,13 @@ Este repositório contém uma aplicação de guia de estudos com funcionalidades
    - [Etapa 3: Aplicar os YAMLs](#etapa-3-aplicar-os-yamls)
    - [Etapa 4: Verificar os pods e serviços](#etapa-4-verificar-os-pods-e-serviços)
    - [Etapa 5: Acessar a aplicação](#etapa-5-acessar-a-aplicação)
+5. [Executando Prometheus e Grafana para monitoramento]()
+   - [Etapa 1: Criar PVC para o Prometheus]()
+   - [Etapa 2: Criar Deployment e Service para Prometheus]()
+   - [Etapa 3: Criar Deployment e Service para Grafana]()
+   - [Etapa 4: Aplicar os YAMLs de monitoramento]()
+   - [Etapa 5: Acessar o Grafana]()
+   - [Etapa 6: Configurar Dashboard]()
 
 ---
 
@@ -215,6 +222,7 @@ spec:
 ```
 
 #### `redis-service.yaml`
+
 ```yaml
 apiVersion: v1
 kind: Service
@@ -257,3 +265,163 @@ minikube service infnet-guia-minikube-service --url
 ```
 
 > Ex: `http://192.168.49.2:30080`
+
+---
+
+## ✅ Executando Prometheus e Grafana para monitoramento
+
+### Etapa 0: Criar diretório
+
+Este diretório é apenas para fins de organização e concentrar todos os arquivos referentes ao monitoramento da aplicação.
+
+```bash
+mkdir -p monitoring
+cd monitoring
+```
+
+---
+
+### Etapa 1: Criar PVC para o Prometheus
+
+#### `prometheus-pvc.yaml`
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: prometheus-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+```
+
+---
+
+### Etapa 2: Criar Deployment e Service para Prometheus
+
+#### `prometheus-deployment.yaml`
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus
+  template:
+    metadata:
+      labels:
+        app: prometheus
+    spec:
+      containers:
+        - name: prometheus
+          image: prom/prometheus
+          ports:
+            - containerPort: 9090
+          volumeMounts:
+            - name: prometheus-storage
+              mountPath: /prometheus
+      volumes:
+        - name: prometheus-storage
+          persistentVolumeClaim:
+            claimName: prometheus-pvc
+```
+
+#### `prometheus-service.yaml`
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus
+spec:
+  selector:
+    app: prometheus
+  ports:
+    - port: 9090
+  type: ClusterIP
+```
+
+---
+
+### Etapa 3: Criar Deployment e Service para Grafana
+
+#### `grafana-deployment.yaml`
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      containers:
+        - name: grafana
+          image: grafana/grafana
+          ports:
+            - containerPort: 3000
+```
+
+#### `grafana-service.yaml`
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+spec:
+  type: NodePort
+  selector:
+    app: grafana
+  ports:
+    - port: 3000
+      targetPort: 3000
+      nodePort: 30001
+```
+
+---
+
+### Etapa 4: Aplicar os YAMLs de monitoramento
+
+```bash
+kubectl apply -f prometheus-pvc.yaml
+kubectl apply -f prometheus-deployment.yaml
+kubectl apply -f prometheus-service.yaml
+kubectl apply -f grafana-deployment.yaml
+kubectl apply -f grafana-service.yaml
+```
+
+---
+
+### Etapa 5: Acessar o Grafana
+
+```bash
+minikube service grafana --url
+```
+
+_Usuário: admin_
+_Senha: admin_
+
+---
+
+### Etapa 6: Configurar Dashboard
+
+1. Acesse o Grafana
+
+2. Adicione o Prometheus como fonte de dados (http://prometheus:9090)
+
+3. Importe dashboards prontos (ex: ID 1860 – Kubernetes cluster monitoring)
+
+4. Visualize dados como CPU, memória, etc.
