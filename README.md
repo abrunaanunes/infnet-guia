@@ -8,9 +8,9 @@ Este repositório contém uma aplicação de guia de estudos com funcionalidades
 ## 📑 Sumário
 
 1. [Pré-requisitos](#-pr%C3%A9-requisitos)
-2. [Rodando a Aplicação com Docker](#rodando-a-aplicação-com-docker)
-3. [Publicando Imagem no DockerHub](#publicar-imagem-no-dockerhub)
-4. [Executando a Aplicação com Kubernetes via Minikube](#executando-a-aplicação-com-kubernetes-via-minikube)
+2. [Rodando a Aplicação com Docker](#-rodando-a-aplicação-com-docker)
+3. [Publicando Imagem no DockerHub](#-publicar-imagem-no-dockerhub)
+4. [Executando a Aplicação com Kubernetes via Minikube](#-executando-a-aplicação-com-kubernetes-via-minikube)
    - [Etapa 0: Preparar o ambiente](#etapa-0-preparar-o-ambiente)
    - [Etapa 1: Buildar sua imagem](#etapa-1-buildar-sua-imagem)
    - [Etapa 2: Criar os arquivos YAML](#etapa-2-criar-os-arquivos-yaml)
