@@ -7,7 +7,7 @@ Este repositório contém uma aplicação de guia de estudos com funcionalidades
 
 ## 📑 Sumário
 
-1. [Pré-requisitos](#pré-requisitos)
+1. [Pré-requisitos](#-pr%C3%A9-requisitos)
 2. [Rodando a Aplicação com Docker](#rodando-a-aplicação-com-docker)
 3. [Publicando Imagem no DockerHub](#publicar-imagem-no-dockerhub)
 4. [Executando a Aplicação com Kubernetes via Minikube](#executando-a-aplicação-com-kubernetes-via-minikube)
