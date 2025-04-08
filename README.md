@@ -18,12 +18,12 @@ Este repositório contém uma aplicação de guia de estudos com funcionalidades
    - [Etapa 4: Verificar os pods e serviços](#etapa-4-verificar-os-pods-e-serviços)
    - [Etapa 5: Acessar a aplicação](#etapa-5-acessar-a-aplicação)
 5. [Executando Prometheus e Grafana para monitoramento]()
-   - [Etapa 1: Criar PVC para o Prometheus]()
-   - [Etapa 2: Criar Deployment e Service para Prometheus]()
-   - [Etapa 3: Criar Deployment e Service para Grafana]()
-   - [Etapa 4: Aplicar os YAMLs de monitoramento]()
-   - [Etapa 5: Acessar o Grafana]()
-   - [Etapa 6: Configurar Dashboard]()
+   - [Etapa 1: Criar PVC para o Prometheus](#etapa-0-criar-diretório)
+   - [Etapa 2: Criar Deployment e Service para Prometheus](#etapa-1-criar-pvc-para-o-prometheus)
+   - [Etapa 3: Criar Deployment e Service para Grafana](#etapa-3-criar-deployment-e-service-para-grafana)
+   - [Etapa 4: Aplicar os YAMLs de monitoramento](#etapa-4-aplicar-os-yamls-de-monitoramento)
+   - [Etapa 5: Acessar o Grafana](#etapa-5-acessar-o-grafana)
+   - [Etapa 6: Configurar Dashboard](#etapa-6-configurar-dashboard)
 
 ---
 
