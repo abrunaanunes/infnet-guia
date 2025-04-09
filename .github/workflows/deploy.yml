@@ -55,14 +55,14 @@ jobs:
       - name: Debug Docker Build command
         run: |
           echo "Build command:"
-          echo "docker build -t ${{ secrets.REGISTRY }}/${{ secrets.IMAGE_NAME }}:${{ github.sha }} ."
+          echo "docker build -t ${{ secrets.REGISTRY }}/${{ secrets.IMAGE_NAME }}:latest ."
 
       - name: Build and tag Docker image
         run: |
-          docker build -t ${{ secrets.REGISTRY }}/${{ secrets.IMAGE_NAME }}:${{ github.sha }} .
-          docker tag ${{ secrets.REGISTRY }}/${{ secrets.IMAGE_NAME }}:${{ github.sha }} ${{ secrets.REGISTRY }}/${{ secrets.IMAGE_NAME }}:latest
+          docker build -t ${{ secrets.REGISTRY }}/${{ secrets.IMAGE_NAME }}:latest .
+          docker tag ${{ secrets.REGISTRY }}/${{ secrets.IMAGE_NAME }}:latest ${{ secrets.REGISTRY }}/${{ secrets.IMAGE_NAME }}:latest
 
       - name: Push Docker image
         run: |
-          docker push ${{ secrets.REGISTRY }}/${{ secrets.IMAGE_NAME }}:${{ github.sha }}
+          docker push ${{ secrets.REGISTRY }}/${{ secrets.IMAGE_NAME }}:latest
           docker push ${{ secrets.REGISTRY }}/${{ secrets.IMAGE_NAME }}:latest
