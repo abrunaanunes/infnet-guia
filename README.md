@@ -428,8 +428,7 @@ _Senha: admin_
 
 ---
 
-
-# ✅ Criar pipeline de entrega com GitHub Actions
+## ✅ Criar pipeline de entrega com GitHub Actions
 
 Este guia documenta a criação de uma pipeline de entrega contínua (CI/CD) utilizando o GitHub Actions para build e publicação de uma imagem Docker no DockerHub sempre que houver um push na branch `main`.
 
