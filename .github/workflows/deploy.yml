@@ -52,6 +52,11 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
+      - name: Debug Docker Build command
+        run: |
+          echo "Build command:"
+          echo "docker build -t ${{ secrets.REGISTRY }}/${{ secrets.IMAGE_NAME }}:${{ github.sha }} ."
+
       - name: Build and tag Docker image
         run: |
           docker build -t ${{ secrets.REGISTRY }}/${{ secrets.IMAGE_NAME }}:${{ github.sha }} .
