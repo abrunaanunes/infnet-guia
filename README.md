@@ -484,7 +484,7 @@ jobs:
 
 ---
 
-## 🔐 Adicionando os secrets no GitHub
+## Adicionando os secrets no GitHub
 
 1. Vá até o repositório no GitHub
 2. Acesse: `Settings > Secrets and variables > Actions`
