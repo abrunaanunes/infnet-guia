@@ -1,5 +1,13 @@
 name: Build and Deploy
 
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
 env:
   IMAGE_NAME: ${{ github.repository }}
 
@@ -64,4 +72,4 @@ jobs:
 
       - name: Deploy to Kubernetes
         run: |
-          kubectl set image deployment/my-app my-app-container=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          kubectl set image deployment/infnet-guia-minikube infnet-guia-minikube=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
