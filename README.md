@@ -425,3 +425,96 @@ _Senha: admin_
 3. Importe dashboards prontos (ex: ID 1860 – Kubernetes cluster monitoring)
 
 4. Visualize dados como CPU, memória, etc.
+
+---
+
+
+# ✅ Criar pipeline de entrega com GitHub Actions
+
+Este guia documenta a criação de uma pipeline de entrega contínua (CI/CD) utilizando o GitHub Actions para build e publicação de uma imagem Docker no DockerHub sempre que houver um push na branch `main`.
+
+---
+
+## Estrutura do projeto
+
+Crie o diretório `.github/workflows` na raiz do projeto (caso ainda não exista):
+
+```bash
+mkdir -p .github/workflows
+```
+
+---
+
+## Criação do workflow
+
+Crie o arquivo `.github/workflows/docker-publish.yml` com o seguinte conteúdo:
+
+```yaml
+name: Docker Build & Push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login no DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build e push da imagem
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: abrunaanunes/infnet-guia:latest
+```
+
+---
+
+## 🔐 Adicionando os secrets no GitHub
+
+1. Vá até o repositório no GitHub
+2. Acesse: `Settings > Secrets and variables > Actions`
+3. Clique em `New repository secret`
+4. Adicione os seguintes secrets:
+
+| Nome               | Valor                             |
+|--------------------|------------------------------------|
+| `DOCKER_USERNAME`  | Seu nome de usuário no DockerHub  |
+| `DOCKER_PASSWORD`  | Sua senha ou token de acesso      |
+
+---
+
+## Resultado esperado
+
+Após configurar:
+
+- A pipeline será executada automaticamente a cada push na branch `main`
+- A imagem será construída e enviada para o DockerHub como:
+  ```
+  abrunaanunes/infnet-guia:latest
+  ```
+
+---
+
+## Próximos passos (opcional)
+
+- [ ] Adicionar testes automatizados antes do build
+- [ ] Adicionar etapa de deploy com `kubectl`
+- [ ] Taggear builds com base no `package.json` ou `git tag`
+
+---
+
